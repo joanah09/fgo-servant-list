@@ -1,7 +1,7 @@
 import { HStack, Image, useColorMode } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorSwitch";
-import darkLogo from "../assets/fgo-logo-white.png";
-import lightLogo from "../assets/fgo-logo.png";
+import darkLogo from "../../assets/fgo-logo-white.png";
+import lightLogo from "../../assets/fgo-logo.png";
 import Search from "./Search";
 
 const Navbar = () => {

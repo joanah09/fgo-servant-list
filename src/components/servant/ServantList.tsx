@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useServants, { Servant } from "../hooks/useServants";
+import useServants, { Servant } from "../../hooks/useServants";
 import ServantCard from "./ServantCard";
 
 const ServantList = () => {

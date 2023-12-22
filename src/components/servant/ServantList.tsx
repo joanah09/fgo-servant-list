@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import useServants, { Servant } from "../../hooks/useServants";
 import ServantCard from "./ServantCard";
+import Filter from "../navbar/Filter";
 
 const ServantList = () => {
   const [data, setData] = useState<Servant[] | null>(null);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +13,7 @@ const ServantList = () => {
         setLoading(true);
         const servantsArray = useServants();
         const flattenedServants = servantsArray.flat();
-        const initialData = flattenedServants.slice(0, 20);
-        setData(initialData);
+        setData(flattenedServants);
       } catch (error) {
         console.error(`Error fetching data.`);
       } finally {
@@ -25,48 +24,18 @@ const ServantList = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
-      ) {
-        loadMoreData();
-      }
-    };
+  const [sortedData, setSortedData] = useState<Servant[] | null>(null);
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [data]);
-
-  const loadMoreData = async () => {
-    try {
-      setLoading(true);
-      const moreServantsArray = useServants();
-      const flattenedMoreServants = moreServantsArray.flat();
-
-      const nextPageData = flattenedMoreServants.slice(
-        page * 20,
-        (page + 1) * 20
-      );
-
-      setData((prevData) =>
-        prevData ? [...prevData, ...nextPageData] : nextPageData
-      );
-      setPage((prevPage) => prevPage + 1);
-    } catch (error) {
-      console.error(`Error loading more data`);
-    } finally {
-      setLoading(false);
-    }
+  const handleSort = (sortedServants: Servant[]) => {
+    setSortedData(sortedServants);
   };
 
   return (
     <>
-      {data ? (
+      <Filter data={data} onSort={handleSort} />
+      {sortedData ? (
+        sortedData.map((item) => <ServantCard key={item.id} servant={item} />)
+      ) : data ? (
         data.map((item) => <ServantCard key={item.id} servant={item} />)
       ) : (
         <p>Loading Servants...</p>

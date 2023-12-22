@@ -3,8 +3,13 @@ import ColorModeSwitch from "./ColorSwitch";
 import darkLogo from "../../assets/fgo-logo-white.png";
 import lightLogo from "../../assets/fgo-logo.png";
 import Search from "./Search";
+import Filter from "../navbar/Filter";
 
-const Navbar = () => {
+interface NavbarProps {
+  onSort: (sortedServants: Servant[]) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onSort }) => {
   const { colorMode } = useColorMode();
   const logoSrc = colorMode === "dark" ? darkLogo : lightLogo;
 
@@ -13,6 +18,7 @@ const Navbar = () => {
       <Image src={logoSrc} boxSize="50px" />
       <Search />
       <ColorModeSwitch />
+      <Filter onSort={onSort} />
     </HStack>
   );
 };

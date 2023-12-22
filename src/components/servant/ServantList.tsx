@@ -67,9 +67,9 @@ const ServantList = () => {
   return (
     <>
       {data ? (
-        data.map((item, index) => <ServantCard key={item.id} servant={item} />)
+        data.map((item) => <ServantCard key={item.id} servant={item} />)
       ) : (
-        <p>Loading...</p>
+        <p>Loading Servants...</p>
       )}
     </>
   );

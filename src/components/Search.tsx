@@ -12,7 +12,7 @@ const Search = () => {
       <InputLeftElement />
       <Input
         borderRadius={20}
-        placeholder="Search games..."
+        placeholder="Search"
         variant="filled"
         isDisabled
       />

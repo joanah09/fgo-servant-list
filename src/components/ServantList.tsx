@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useServants, { Servant } from "../hooks/useServants";
-import {
-  Box,
-  Card,
-  CardBody,
-  Image,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+import ServantCard from "./ServantCard";
 
 const ServantList = () => {
   const [data, setData] = useState<Servant[] | null>(null);
@@ -25,7 +16,7 @@ const ServantList = () => {
         const initialData = flattenedServants.slice(0, 20);
         setData(initialData);
       } catch (error) {
-        console.error(`Error fetching data: ${error.message}`);
+        console.error(`Error fetching data.`);
       } finally {
         setLoading(false);
       }
@@ -34,7 +25,6 @@ const ServantList = () => {
     fetchData();
   }, []);
 
-  console.log(data);
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -68,7 +58,7 @@ const ServantList = () => {
       );
       setPage((prevPage) => prevPage + 1);
     } catch (error) {
-      console.error(`Error loading more data: ${error.message}`);
+      console.error(`Error loading more data`);
     } finally {
       setLoading(false);
     }
@@ -77,22 +67,7 @@ const ServantList = () => {
   return (
     <>
       {data ? (
-        data.map((item, index) => (
-          <Card borderRadius={2} overflow="hidden" key={item.id}>
-            <CardBody key={`${item.id}-${index}`}>
-              <Flex alignItems="center">
-                <Image src={item.face} alt={item.name} />
-                <Box marginLeft={4}>
-                  {[...Array(item.rarity)].map((_, starIndex) => (
-                    <StarIcon key={starIndex} color="yellow.400" />
-                  ))}
-                  <Heading fontSize="1xl">{item.name}</Heading>
-                  <Text textStyle="p">{item.className}</Text>
-                </Box>
-              </Flex>
-            </CardBody>
-          </Card>
-        ))
+        data.map((item, index) => <ServantCard key={item.id} servant={item} />)
       ) : (
         <p>Loading...</p>
       )}

@@ -4,6 +4,7 @@ import ServantList from "./ServantList";
 const ServantContainer = () => {
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
+      {/* <Filter onSort={onSort} /> */}
       <ServantList />
     </SimpleGrid>
   );

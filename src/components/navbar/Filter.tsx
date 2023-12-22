@@ -8,12 +8,12 @@ type Servant = {
 
 interface FilterProps {
   data: Servant[] | null;
-  onSort: (sortedData: Servant[]) => void;
+  onSort: (filteredData: Servant[]) => void;
   onFilter: (filteredData: Servant[]) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
-  const sortRarity = [
+  const filterRarity = [
     { value: "5", label: "5" },
     { value: "4", label: "4" },
     { value: "3", label: "3" },
@@ -21,7 +21,7 @@ const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
     { value: "1", label: "1" },
   ];
 
-  const sortClassName = [
+  const filterClass = [
     { value: "saber", label: "Saber" },
     { value: "archer", label: "Archer" },
     { value: "lancer", label: "Lancer" },
@@ -32,65 +32,65 @@ const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
     { value: "ruler", label: "Ruler" },
     { value: "alterEgo", label: "Alter Ego" },
     { value: "avenger", label: "Avenger" },
-    { value: "demonGodPillar", label: "Demon God Pillar" },
     { value: "foreigner", label: "Foreigner" },
     { value: "pretender", label: "Pretender" },
     { value: "grandCaster", label: "Grand Caster" },
   ];
 
   const [selectedRarity, setSelectedRarity] = useState("5");
-  const [selectedClassName, setSelectedClassName] = useState("saber");
+  const [selectedClass, setSelectedClass] = useState("saber");
 
-  const handleSortByRarity = (selectedRarity: string) => {
-    console.log("Sorting by rarity:", selectedRarity);
+  const handleFilterRarity = (selectedRarity: string) => {
+    console.log(selectedRarity);
     if (data) {
-      const sortedData = data.filter(
+      const filteredData = data.filter(
         (item) => item.rarity === parseInt(selectedRarity)
       );
-      onSort(sortedData);
+      onSort(filteredData);
     }
   };
 
-  const handleSortByClassName = (selectedClassName: string) => {
+  const handleFilterClassName = (selectedClass: string) => {
+    console.log(selectedClass);
     if (data) {
-      const sortedData = data.filter(
-        (item) => item.className === selectedClassName
+      const filteredData = data.filter(
+        (item) => item.className === selectedClass
       );
-      onSort(sortedData);
+      onSort(filteredData);
     }
   };
 
   useEffect(() => {
-    handleSortByRarity(selectedRarity);
+    handleFilterRarity(selectedRarity);
   }, [selectedRarity]);
 
   useEffect(() => {
-    handleSortByClassName(selectedClassName);
-  }, [selectedClassName]);
+    handleFilterClassName(selectedClass);
+  }, [selectedClass]);
 
   return (
     <>
       <Menu>
         <MenuButton>Filter by Rarity</MenuButton>
         <MenuList>
-          {sortRarity.map((rarity) => (
+          {filterRarity.map((rarity) => (
             <MenuItem
               key={rarity.value}
-              onClick={() => handleSortByRarity(rarity.value)}
+              onClick={() => setSelectedRarity(rarity.value)}
             >
-              {rarity.value}
+              {rarity.label}
             </MenuItem>
           ))}
         </MenuList>
       </Menu>
 
       <Menu>
-        <MenuButton>Filter by Class Name</MenuButton>
+        <MenuButton>Filter by Class</MenuButton>
         <MenuList>
-          {sortClassName.map((className) => (
+          {filterClass.map((className) => (
             <MenuItem
               key={className.value}
-              onClick={() => setSelectedClassName(className.value)}
+              onClick={() => setSelectedClass(className.value)}
             >
               {className.label}
             </MenuItem>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import RarityFilter from "../servant/ServantRarity";
 import ClassFilter from "../servant/ServantClass";
-import { ServantSort } from "../../type/type";
+import { ServantSort } from "../../type/servantType";
 
 interface FilterProps {
   data: ServantSort[] | null;

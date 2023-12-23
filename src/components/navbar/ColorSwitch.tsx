@@ -12,7 +12,7 @@ const ColorModeSwitch = () => {
         onChange={toggleColorMode}
       />
       <Text whiteSpace="nowrap">
-        <MoonIcon />
+        <MoonIcon marginTop={-0.5} />
       </Text>
     </HStack>
   );

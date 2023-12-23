@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { HStack, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
-import useServants from "../../hooks/useServants";
-import { ServantSort } from "../../type/servantType";
+import { useServants, ServantSort } from "../../hooks/useServants";
 
 const ServantContainer = () => {
   const [servants, setServants] = useState<ServantSort[] | null>(null);
@@ -31,9 +30,9 @@ const ServantContainer = () => {
 
   return (
     <>
-      <HStack marginBottom={4}>
+      <Box marginBottom={4}>
         <Filter data={servants} onSort={handleSort} />
-      </HStack>
+      </Box>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
         <ServantList data={filteredServants || servants} />
       </SimpleGrid>

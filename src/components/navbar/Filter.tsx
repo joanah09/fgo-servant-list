@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import RarityFilter from "../servant/ServantRarity";
-import ClassFilter from "../servant/ServantClass";
-import { ServantSort } from "../../type/servantType";
+import ServantRarity from "../servant/ServantRarity";
+import ServantClass from "../servant/ServantClass";
+import { ServantSort } from "../../hooks/useServants";
+import { Wrap, WrapItem, useBreakpointValue } from "@chakra-ui/react";
 
 interface FilterProps {
   data: ServantSort[] | null;
@@ -37,6 +38,7 @@ const Filter = ({ data, onSort }: FilterProps) => {
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedRarityDisplay, setSelectedRarityDisplay] = useState("");
   const [filteredData, setFilteredData] = useState<ServantSort[] | null>(data);
+  const width = useBreakpointValue({ base: "100%", md: "auto" });
 
   const filterByRarity = (data: ServantSort[], selectedRarity: string) => {
     return data.filter((item) => item.rarity === parseInt(selectedRarity));
@@ -99,17 +101,22 @@ const Filter = ({ data, onSort }: FilterProps) => {
 
   return (
     <>
-      <RarityFilter
-        filterRarity={filterRarity}
-        selectedRarityDisplay={selectedRarityDisplay}
-        setSelectedRarity={setSelectedRarity}
-      />
-
-      <ClassFilter
-        filterClass={filterClass}
-        selectedClass={selectedClass}
-        setSelectedClass={setSelectedClass}
-      />
+      <Wrap spacing="10px" align="left">
+        <WrapItem w={width}>
+          <ServantRarity
+            filterRarity={filterRarity}
+            selectedRarityDisplay={selectedRarityDisplay}
+            setSelectedRarity={setSelectedRarity}
+          />
+        </WrapItem>
+        <WrapItem>
+          <ServantClass
+            filterClass={filterClass}
+            selectedClass={selectedClass}
+            setSelectedClass={setSelectedClass}
+          />
+        </WrapItem>
+      </Wrap>
     </>
   );
 };

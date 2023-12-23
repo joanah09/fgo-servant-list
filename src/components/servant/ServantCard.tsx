@@ -1,15 +1,9 @@
 import { Card, Box, Flex, Image, Heading, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-
-type ServantInfo = {
-  name: string;
-  className: string;
-  rarity: number;
-  face: string;
-};
+import { ServantSort } from "../../hooks/useServants";
 
 interface ServantCardProps {
-  servant: ServantInfo;
+  servant: ServantSort;
 }
 
 const ServantCard = ({ servant }: ServantCardProps) => {

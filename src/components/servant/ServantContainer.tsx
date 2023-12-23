@@ -3,22 +3,15 @@ import { HStack, SimpleGrid } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
 import useServants from "../../hooks/useServants";
-
-type Servant = {
-  id: number;
-  name: string;
-  className: string;
-  rarity: number;
-  face: string;
-};
+import { ServantSort } from "../../type/type";
 
 const ServantContainer = () => {
-  const [servants, setServants] = useState<Servant[] | null>(null);
-  const [filteredServants, setFilteredServants] = useState<Servant[] | null>(
-    null
-  );
+  const [servants, setServants] = useState<ServantSort[] | null>(null);
+  const [filteredServants, setFilteredServants] = useState<
+    ServantSort[] | null
+  >(null);
 
-  const handleSort = (filteredData: Servant[]) => {
+  const handleSort = (filteredData: ServantSort[]) => {
     setFilteredServants(filteredData);
   };
 

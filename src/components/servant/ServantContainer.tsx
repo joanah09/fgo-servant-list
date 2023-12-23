@@ -4,7 +4,7 @@ import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
 import useServants from "../../hooks/useServants";
 
-export type Servant = {
+type Servant = {
   id: number;
   name: string;
   className: string;

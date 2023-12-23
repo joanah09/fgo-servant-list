@@ -1,8 +1,7 @@
 import { Card, Box, Flex, Image, Heading, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-type Servant = {
-  id: number;
+type ServantInfo = {
   name: string;
   className: string;
   rarity: number;
@@ -10,7 +9,7 @@ type Servant = {
 };
 
 interface ServantCardProps {
-  servant: Servant;
+  servant: ServantInfo;
 }
 
 const ServantCard = ({ servant }: ServantCardProps) => {

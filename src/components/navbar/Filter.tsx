@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import RarityFilter from "../servant/ServantRarity";
 import ClassFilter from "../servant/ServantClass";
 
-type Servant = {
+type ServantSort = {
   rarity: number;
   className: string;
 };
 
 interface FilterProps {
-  data: Servant[] | null;
-  onSort: (filteredData: Servant[]) => void;
+  data: ServantSort[] | null;
+  onSort: (filteredData: ServantSort[]) => void;
 }
 
 const Filter = ({ data, onSort }: FilterProps) => {
@@ -40,18 +40,18 @@ const Filter = ({ data, onSort }: FilterProps) => {
   const [selectedRarity, setSelectedRarity] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedRarityDisplay, setSelectedRarityDisplay] = useState("");
-  const [filteredData, setFilteredData] = useState<Servant[] | null>(data);
+  const [filteredData, setFilteredData] = useState<ServantSort[] | null>(data);
 
-  const filterByRarity = (data: Servant[], selectedRarity: string) => {
+  const filterByRarity = (data: ServantSort[], selectedRarity: string) => {
     return data.filter((item) => item.rarity === parseInt(selectedRarity));
   };
 
-  const filterByClass = (data: Servant[], selectedClass: string) => {
+  const filterByClass = (data: ServantSort[], selectedClass: string) => {
     return data.filter((item) => item.className === selectedClass);
   };
 
   const combineFilters = (
-    data: Servant[],
+    data: ServantSort[],
     selectedRarity: string,
     selectedClass: string
   ) => {

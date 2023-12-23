@@ -1,5 +1,6 @@
-import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import RarityFilter from "../servant/ServantRarity";
+import ClassFilter from "../servant/ServantClass";
 
 type Servant = {
   rarity: number;
@@ -9,16 +10,15 @@ type Servant = {
 interface FilterProps {
   data: Servant[] | null;
   onSort: (filteredData: Servant[]) => void;
-  onFilter: (filteredData: Servant[]) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
+const Filter = ({ data, onSort }: FilterProps) => {
   const filterRarity = [
-    { value: "5", label: "5" },
-    { value: "4", label: "4" },
-    { value: "3", label: "3" },
-    { value: "2", label: "2" },
-    { value: "1", label: "1" },
+    { value: "5", stars: 5 },
+    { value: "4", stars: 4 },
+    { value: "3", stars: 3 },
+    { value: "2", stars: 2 },
+    { value: "1", stars: 1 },
   ];
 
   const filterClass = [
@@ -37,26 +37,59 @@ const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
     { value: "grandCaster", label: "Grand Caster" },
   ];
 
-  const [selectedRarity, setSelectedRarity] = useState("5");
-  const [selectedClass, setSelectedClass] = useState("saber");
+  const [selectedRarity, setSelectedRarity] = useState("");
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedRarityDisplay, setSelectedRarityDisplay] = useState("");
+  const [filteredData, setFilteredData] = useState<Servant[] | null>(data);
+
+  const filterByRarity = (data: Servant[], selectedRarity: string) => {
+    return data.filter((item) => item.rarity === parseInt(selectedRarity));
+  };
+
+  const filterByClass = (data: Servant[], selectedClass: string) => {
+    return data.filter((item) => item.className === selectedClass);
+  };
+
+  const combineFilters = (
+    data: Servant[],
+    selectedRarity: string,
+    selectedClass: string
+  ) => {
+    let filteredData = data;
+
+    if (selectedRarity !== "") {
+      filteredData = filterByRarity(filteredData, selectedRarity);
+    }
+
+    if (selectedClass !== "") {
+      filteredData = filterByClass(filteredData, selectedClass);
+    }
+
+    return filteredData;
+  };
 
   const handleFilterRarity = (selectedRarity: string) => {
-    console.log(selectedRarity);
     if (data) {
-      const filteredData = data.filter(
-        (item) => item.rarity === parseInt(selectedRarity)
+      const combinedFilter = combineFilters(
+        data,
+        selectedRarity,
+        selectedClass
       );
-      onSort(filteredData);
+      onSort(combinedFilter);
+      setSelectedRarityDisplay(selectedRarity);
+      setFilteredData(combinedFilter);
     }
   };
 
   const handleFilterClassName = (selectedClass: string) => {
-    console.log(selectedClass);
     if (data) {
-      const filteredData = data.filter(
-        (item) => item.className === selectedClass
+      const combinedFilter = combineFilters(
+        data,
+        selectedRarity,
+        selectedClass
       );
-      onSort(filteredData);
+      onSort(combinedFilter);
+      setFilteredData(combinedFilter);
     }
   };
 
@@ -70,33 +103,17 @@ const Filter: React.FC<FilterProps> = ({ data, onSort }) => {
 
   return (
     <>
-      <Menu>
-        <MenuButton>Filter by Rarity</MenuButton>
-        <MenuList>
-          {filterRarity.map((rarity) => (
-            <MenuItem
-              key={rarity.value}
-              onClick={() => setSelectedRarity(rarity.value)}
-            >
-              {rarity.label}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
+      <RarityFilter
+        filterRarity={filterRarity}
+        selectedRarityDisplay={selectedRarityDisplay}
+        setSelectedRarity={setSelectedRarity}
+      />
 
-      <Menu>
-        <MenuButton>Filter by Class</MenuButton>
-        <MenuList>
-          {filterClass.map((className) => (
-            <MenuItem
-              key={className.value}
-              onClick={() => setSelectedClass(className.value)}
-            >
-              {className.label}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
+      <ClassFilter
+        filterClass={filterClass}
+        selectedClass={selectedClass}
+        setSelectedClass={setSelectedClass}
+      />
     </>
   );
 };

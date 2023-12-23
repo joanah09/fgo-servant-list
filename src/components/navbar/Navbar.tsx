@@ -4,11 +4,6 @@ import darkLogo from "../../assets/fgo-logo-white.png";
 import lightLogo from "../../assets/fgo-logo.png";
 import Search from "./Search";
 
-type Servant = {
-  rarity: number;
-  className: string;
-};
-
 const Navbar = () => {
   const { colorMode } = useColorMode();
   const logoSrc = colorMode === "dark" ? darkLogo : lightLogo;

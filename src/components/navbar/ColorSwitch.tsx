@@ -3,6 +3,7 @@ import { MoonIcon } from "@chakra-ui/icons";
 
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
+
   return (
     <HStack>
       <Switch

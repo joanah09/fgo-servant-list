@@ -1,25 +1,33 @@
 import { useState } from "react";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Input, InputGroup } from "@chakra-ui/react";
 import { useServants, ServantSort } from "../../hooks/useServants";
 
-const Search = () => {
+interface SearchProps {
+  onSearchResults: (results: ServantSort[]) => void;
+}
+
+const Search = ({ onSearchResults }: SearchProps) => {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<ServantSort[]>([]);
 
   const handleSearch = async () => {
     try {
-      const results = await useServants(searchValue);
-      setSearchResults(results);
+      if (searchValue.trim() === "") {
+        setSearchResults([]);
+        onSearchResults([]);
+      } else {
+        const results = await useServants(searchValue);
+        setSearchResults(results);
+        onSearchResults(results);
+      }
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
   };
 
-  console.log(searchValue, searchResults);
   return (
     <>
       <InputGroup>
-        <InputLeftElement />
         <Input
           borderRadius={20}
           placeholder="Search"

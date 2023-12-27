@@ -1,7 +1,7 @@
 import servantsData from '../data/servants';
-import { apiUrl } from '../services/api-client';
+import { apiSearchUrl } from '../services/api-client';
 
-export interface ServantSort {
+export interface ServantData {
   id: number;
   name: string;
   className: string;
@@ -9,16 +9,16 @@ export interface ServantSort {
   face: string;
 }
 
-export const useServants = async (searchName?: string): Promise<ServantSort[]> => {
+export const useServants = async (searchName?: string): Promise<ServantData[]> => {
   try {
     if (searchName) {
-      const response = await fetch(apiUrl(searchName));
+      const response = await fetch(apiSearchUrl(searchName));
       const searchData = await response.json();
       
-      return searchData as ServantSort[];
+      return searchData as ServantData[];
     } else {
       // Static data, used for initial display
-      return servantsData as unknown as ServantSort[];
+      return servantsData as unknown as ServantData[];
     }
   } catch (error) {
     throw new Error(`Failed to fetch servants.`);

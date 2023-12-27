@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Input, InputGroup } from "@chakra-ui/react";
-import { useServants, ServantSort } from "../../hooks/useServants";
+import { useServants, ServantData } from "../../hooks/useServants";
 
 interface SearchProps {
-  onSearchResults: (results: ServantSort[]) => void;
+  onSearchResults: (results: ServantData[]) => void;
 }
 
 const Search = ({ onSearchResults }: SearchProps) => {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState<ServantSort[]>([]);
+  const [searchResults, setSearchResults] = useState<ServantData[]>([]);
 
   const handleSearch = async () => {
     try {

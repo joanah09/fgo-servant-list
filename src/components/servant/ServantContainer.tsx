@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import { Box, Heading, SimpleGrid, useColorMode } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
-import { useServants, ServantSort } from "../../hooks/useServants";
+import { useServants, ServantData } from "../../hooks/useServants";
 import ServantSearchResult from "./ServantSearchResult";
 import Navbar from "../navbar/Navbar";
 
 const ServantContainer = () => {
-  const [servants, setServants] = useState<ServantSort[] | null>(null);
+  const [servants, setServants] = useState<ServantData[] | null>(null);
   const [filteredServants, setFilteredServants] = useState<
-    ServantSort[] | null
+    ServantData[] | null
   >(null);
-  const [searchResults, setSearchResults] = useState<ServantSort[]>([]);
+  const [searchResults, setSearchResults] = useState<ServantData[]>([]);
 
-  const handleSort = (filteredData: ServantSort[]) => {
+  const handleSort = (filteredData: ServantData[]) => {
     setFilteredServants(filteredData);
   };
 
-  const handleSearchResults = (results: ServantSort[]) => {
+  const handleSearchResults = (results: ServantData[]) => {
     setSearchResults(results);
   };
 

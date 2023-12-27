@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ServantSort } from "../../hooks/useServants";
+import { ServantData } from "../../hooks/useServants";
 import ServantCard from "./ServantCard";
 
 interface ServantListProps {
-  data: ServantSort[] | null;
+  data: ServantData[] | null;
 }
 
 const ServantList = ({ data }: ServantListProps) => {

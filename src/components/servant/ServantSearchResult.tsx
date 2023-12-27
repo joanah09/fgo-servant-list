@@ -1,9 +1,9 @@
 import { Card, Box, Flex, Image, Heading, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { ServantSort } from "../../hooks/useServants";
+import { ServantData } from "../../hooks/useServants";
 
 interface ServantCardProps {
-  servant: ServantSort[];
+  servant: ServantData[];
 }
 
 const ServantSearchResult = ({ servant }: ServantCardProps) => (

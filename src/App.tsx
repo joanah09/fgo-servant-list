@@ -1,11 +1,10 @@
-import Navbar from "./components/navbar/Navbar";
 import ServantContainer from "./components/servant/ServantContainer";
-import { Box, GridItem, Heading } from "@chakra-ui/react";
+import { Box, GridItem } from "@chakra-ui/react";
 
 const App = () => {
   return (
-    <Box m={4}>
-      <GridItem area="main" m={4}>
+    <Box mb={4}>
+      <GridItem area="main">
         <ServantContainer />
       </GridItem>
     </Box>

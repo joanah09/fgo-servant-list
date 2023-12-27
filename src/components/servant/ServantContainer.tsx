@@ -39,10 +39,11 @@ const ServantContainer = () => {
     <>
       <Navbar onSearchResults={handleSearchResults} />
 
-      <Box padding="10px">
-        <Heading fontSize="3xl" my={4}>
+      <Box p={4} mx={4}>
+        <Heading fontSize="3xl" py={4} pt={20}>
           Servant List
         </Heading>
+
         {searchResults.length !== 0 ? (
           <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
             <ServantSearchResult servant={searchResults} />

@@ -51,10 +51,10 @@ const ServantContainer = () => {
         ) : (
           <>
             <Box marginBottom={4}>
-              <Filter data={servants} onSort={handleSort} />
+              <Filter servant={servants} onSort={handleSort} />
             </Box>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
-              <ServantList data={filteredServants || servants} />
+              <ServantList servant={filteredServants || servants} />
             </SimpleGrid>
           </>
         )}

@@ -5,11 +5,11 @@ import { ServantData } from "../../hooks/useServants";
 import { Wrap, WrapItem, useBreakpointValue } from "@chakra-ui/react";
 
 interface FilterProps {
-  data: ServantData[] | null;
+  servant: ServantData[] | null;
   onSort: (filteredData: ServantData[]) => void;
 }
 
-const Filter = ({ data, onSort }: FilterProps) => {
+const Filter = ({ servant, onSort }: FilterProps) => {
   const filterRarity = [
     { value: "5", stars: 5 },
     { value: "4", stars: 4 },
@@ -37,7 +37,9 @@ const Filter = ({ data, onSort }: FilterProps) => {
   const [selectedRarity, setSelectedRarity] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedRarityDisplay, setSelectedRarityDisplay] = useState("");
-  const [filteredData, setFilteredData] = useState<ServantData[] | null>(data);
+  const [filteredData, setFilteredData] = useState<ServantData[] | null>(
+    servant
+  );
   const width = useBreakpointValue({ base: "100%", md: "auto" });
 
   const filterByRarity = (data: ServantData[], selectedRarity: string) => {
@@ -67,9 +69,9 @@ const Filter = ({ data, onSort }: FilterProps) => {
   };
 
   const handleFilterRarity = (selectedRarity: string) => {
-    if (data) {
+    if (servant) {
       const combinedFilter = combineFilters(
-        data,
+        servant,
         selectedRarity,
         selectedClass
       );
@@ -80,9 +82,9 @@ const Filter = ({ data, onSort }: FilterProps) => {
   };
 
   const handleFilterClassName = (selectedClass: string) => {
-    if (data) {
+    if (servant) {
       const combinedFilter = combineFilters(
-        data,
+        servant,
         selectedRarity,
         selectedClass
       );

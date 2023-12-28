@@ -3,17 +3,17 @@ import { ServantData } from "../../hooks/useServants";
 import ServantCard from "./ServantCard";
 
 interface ServantListProps {
-  data: ServantData[] | null;
+  servant: ServantData[] | null;
 }
 
-const ServantList = ({ data }: ServantListProps) => {
+const ServantList = ({ servant }: ServantListProps) => {
   const [loading, setLoading] = useState(false);
 
   return (
     <>
       {loading && <p>Loading Servants...</p>}
-      {data && data.length > 0 ? (
-        data.map((item) => <ServantCard key={item.id} servant={item} />)
+      {servant && servant.length > 0 ? (
+        servant.map((item) => <ServantCard key={item.id} servant={item} />)
       ) : (
         <p>No Servants found.</p>
       )}

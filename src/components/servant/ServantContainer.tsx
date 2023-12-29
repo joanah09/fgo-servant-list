@@ -2,16 +2,24 @@ import { useState, useEffect } from "react";
 import { Box, Heading, SimpleGrid, useColorMode } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
-import { useServants, ServantData } from "../../hooks/useServants";
+import {
+  useServants,
+  ServantData,
+  ServantDataDetailed,
+} from "../../hooks/useServants";
 import ServantSearchResult from "./ServantSearchResult";
 import Navbar from "../navbar/Navbar";
 
 const ServantContainer = () => {
   const [servants, setServants] = useState<ServantData[] | null>(null);
+  const [servantDetail, setServantDetail] = useState<
+    ServantDataDetailed[] | null
+  >(null);
   const [filteredServants, setFilteredServants] = useState<
     ServantData[] | null
   >(null);
   const [searchResults, setSearchResults] = useState<ServantData[]>([]);
+  const [servantId, setServantId] = useState<number | null>(null); // Declare servantId state
 
   const handleSort = (filteredData: ServantData[]) => {
     setFilteredServants(filteredData);
@@ -21,20 +29,41 @@ const ServantContainer = () => {
     setSearchResults(results);
   };
 
+  const handleServantClick = async (id: number) => {
+    try {
+      setServantId(id);
+      const detailedServantData = await useServants(undefined, id);
+      setServantDetail(detailedServantData as ServantDataDetailed[]);
+    } catch (error) {
+      console.error(`Error fetching detailed servant data.`);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const servantsArray = await useServants();
-        const flattenedServants = servantsArray.flat();
-        setServants(flattenedServants);
+        if (!servants) {
+          const servantsArray = await useServants();
+          const flattenedServants = servantsArray.flat();
+          setServants(flattenedServants);
+        }
+
+        if (servantDetail === null && servantId !== null) {
+          // Fetch detailed servant data if servantId is provided
+          const detailedServantData = await useServants(undefined, servantId);
+          setServantDetail(detailedServantData as ServantDataDetailed[]);
+
+          console.log(servantId, "servant ID");
+        }
       } catch (error) {
         console.error(`Error fetching data.`);
       }
     };
 
     fetchData();
-  }, []);
+  }, [servants, servantDetail, servantId]);
 
+  console.log(servantDetail, "details");
   return (
     <>
       <Navbar onSearchResults={handleSearchResults} />
@@ -54,7 +83,10 @@ const ServantContainer = () => {
               <Filter servant={servants} onSort={handleSort} />
             </Box>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
-              <ServantList servant={filteredServants || servants} />
+              <ServantList
+                servant={filteredServants || servants}
+                onServantClick={handleServantClick}
+              />
             </SimpleGrid>
           </>
         )}

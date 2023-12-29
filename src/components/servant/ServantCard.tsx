@@ -4,11 +4,12 @@ import { ServantData } from "../../hooks/useServants";
 
 interface ServantCardProps {
   servant: ServantData;
+  onClick: () => void;
 }
 
-const ServantCard = ({ servant }: ServantCardProps) => {
+const ServantCard = ({ servant, onClick }: ServantCardProps) => {
   return (
-    <Card borderRadius={2} overflow="hidden">
+    <Card borderRadius={2} overflow="hidden" cursor="pointer" onClick={onClick}>
       <Flex alignItems="center">
         <Image boxSize="85px" src={servant.face} alt={servant.name} />
         <Box marginLeft={4}>

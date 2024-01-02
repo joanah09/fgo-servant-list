@@ -8,6 +8,9 @@ const theme = extendTheme({
         p: {
             textTransform: 'capitalize',
         },
+        span: {
+            textTransform: 'capitalize',
+        }
     },
 });
 

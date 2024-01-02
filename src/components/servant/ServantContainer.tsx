@@ -63,7 +63,6 @@ const ServantContainer = () => {
     fetchData();
   }, [servants, servantDetail, servantId]);
 
-  console.log(servantDetail, "details");
   return (
     <>
       <Navbar onSearchResults={handleSearchResults} />
@@ -75,7 +74,11 @@ const ServantContainer = () => {
 
         {searchResults.length !== 0 ? (
           <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
-            <ServantSearchResult servant={searchResults} />
+            <ServantSearchResult
+              servant={searchResults}
+              onServantClick={handleServantClick}
+              detailedServantData={servantDetail}
+            />
           </SimpleGrid>
         ) : (
           <>
@@ -86,6 +89,7 @@ const ServantContainer = () => {
               <ServantList
                 servant={filteredServants || servants}
                 onServantClick={handleServantClick}
+                detailedServantData={servantDetail}
               />
             </SimpleGrid>
           </>

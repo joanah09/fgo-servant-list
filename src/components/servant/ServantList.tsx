@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { ServantData } from "../../hooks/useServants";
+import { ServantData, ServantDataDetailed } from "../../hooks/useServants";
 import ServantCard from "./ServantCard";
 
 interface ServantListProps {
   servant: ServantData[] | null;
   onServantClick: (id: number) => void;
+  detailedServantData: ServantDataDetailed[] | null;
 }
 
-const ServantList = ({ servant, onServantClick }: ServantListProps) => {
+const ServantList = ({
+  servant,
+  onServantClick,
+  detailedServantData,
+}: ServantListProps) => {
   const [loading, setLoading] = useState(false);
 
   const handleServantClick = (id: number) => {
@@ -23,6 +28,7 @@ const ServantList = ({ servant, onServantClick }: ServantListProps) => {
             key={item.id}
             servant={item}
             onClick={() => handleServantClick(item.id)}
+            detailedServantData={detailedServantData}
           />
         ))
       ) : (

@@ -8,21 +8,44 @@ export interface ServantData {
   rarity: number;
   face: string;
   collectionNo: number;
-
 }
 
-export interface ServantDataDetailed {
+export interface Trait {
   id: number;
   name: string;
-  className: string;
-  rarity: number;
-  face: string;
-  collectionNo: number;
-  lvMax: number;
-  flag: string
 }
 
-export const useServants = async (searchName?: string, servantId?: number): Promise<ServantData[]> => {
+export interface ServantDataDetailed extends ServantData {
+  lvMax: number;
+  flag: string;
+  cost: number;
+  originalBattleName: string;
+  ruby: string;
+  battleName: string;
+  gender: string;
+  attribute: string;
+  cards: [];
+  traits: Trait[];
+  atkBase: string;
+  atkMax: string;
+  hpBase: string;
+  hpMax: string;
+  extraAssets: {
+    charaGraph: {
+      ascension: {
+        [key: string]: string; 
+      };
+      costume: {
+        [key: string]: string;
+      };
+    };
+  };
+}
+
+export const useServants = async (
+  searchName?: string,
+  servantId?: number
+): Promise<ServantData[] | ServantDataDetailed[]> => {
   try {
     if (searchName) {
       const response = await fetch(apiSearchUrl(searchName));
@@ -34,7 +57,6 @@ export const useServants = async (searchName?: string, servantId?: number): Prom
       const response = await fetch(`${apiBaseUrl}/${servantId}`);
       const servantData = await response.json();
 
-      // console.log("nice data", servantData)
       return [servantData] as ServantDataDetailed[];
     } else {
       // Static data, used for initial display

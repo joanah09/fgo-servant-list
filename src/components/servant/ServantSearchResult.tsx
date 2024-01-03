@@ -9,11 +9,7 @@ interface ServantCardProps {
   detailedServantData: ServantDataDetailed[] | null;
 }
 
-const ServantSearchResult = ({
-  servant,
-  onServantClick,
-  detailedServantData,
-}: ServantCardProps) => {
+const ServantSearchResult = ({ servant, onServantClick }: ServantCardProps) => {
   const handleServantClick = (id: number) => {
     onServantClick(id);
   };

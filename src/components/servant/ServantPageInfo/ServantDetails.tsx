@@ -110,7 +110,13 @@ const ServantDetails = ({ details }: ServantDetailsProps) => {
               <b>Traits: </b>
             </Text>
             {details.traits.map((trait) => (
-              <Tag borderRadius="full" variant="solid" colorScheme="red" m={1}>
+              <Tag
+                borderRadius="full"
+                variant="solid"
+                colorScheme="red"
+                m={1}
+                key={trait.id}
+              >
                 <TagLabel textTransform="capitalize">{trait.name}</TagLabel>
               </Tag>
             ))}

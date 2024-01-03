@@ -20,7 +20,7 @@ const ServantPage = () => {
       try {
         const detailedServantData = await useServants(
           undefined,
-          servantId ? parseInt(servantId, 10) : undefined
+          servantId ? parseInt(servantId) : undefined
         );
         setServants(detailedServantData as ServantDataDetailed[]);
       } catch (error) {

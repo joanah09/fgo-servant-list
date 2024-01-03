@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Heading, SimpleGrid, useColorMode } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
 import {
@@ -19,7 +19,7 @@ const ServantContainer = () => {
     ServantData[] | null
   >(null);
   const [searchResults, setSearchResults] = useState<ServantData[]>([]);
-  const [servantId, setServantId] = useState<number | null>(null); // Declare servantId state
+  const [servantId, setServantId] = useState<number | null>(null);
 
   const handleSort = (filteredData: ServantData[]) => {
     setFilteredServants(filteredData);

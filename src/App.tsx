@@ -11,7 +11,7 @@ const App = () => {
         <GridItem area="main">
           <Routes>
             <Route path="/servant/:servantId" element={<ServantPage />} />
-            <Route path="/servants/" element={<ServantContainer />} />
+            <Route path="/" element={<ServantContainer />} />
           </Routes>
         </GridItem>
       </Box>

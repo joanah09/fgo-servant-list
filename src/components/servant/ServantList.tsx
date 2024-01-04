@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ServantData, ServantDataDetailed } from "../../hooks/useServants";
+import { ServantData, ServantDataDetailed } from "../../hooks";
 import ServantCard from "./ServantCard";
 
 interface ServantListProps {

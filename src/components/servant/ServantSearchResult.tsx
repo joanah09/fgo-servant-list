@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, Box, Flex, Image, Heading, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { ServantData, ServantDataDetailed } from "../../hooks/useServants";
+import { ServantData, ServantDataDetailed } from "../../hooks";
 
 interface ServantCardProps {
   servant: ServantData[];

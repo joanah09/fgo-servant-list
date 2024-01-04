@@ -8,8 +8,9 @@ import {
   ResponsiveValue,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import ServantAscensionTabs from "./ServantPageInfo/ServantAscensionTabs";
-import ServantDetails from "./ServantPageInfo/ServantDetails";
+import AscensionTabs from "./ServantPageInfo/AscensionTabs";
+import Details from "./ServantPageInfo/Details";
+import NavbarBasic from "../navbar/NavbarBasic";
 
 const ServantPage = () => {
   const { servantId } = useParams();
@@ -33,33 +34,41 @@ const ServantPage = () => {
 
   const flexDirection = useBreakpointValue({
     base: "column",
-    lg: "row",
+    sm: "row",
   }) as ResponsiveValue<"column" | "row">;
 
   return (
-    <Container maxW="1024px" border="1px" borderColor="gray.200" my={10} p={0}>
-      {servants.map((servant) => (
-        <Flex
-          key={servant.id}
-          direction={flexDirection}
-          justify="center"
-          gap={8}
-        >
-          <Box maxW={flexDirection === "column" ? "100%" : "420px"}>
-            {servant.extraAssets &&
-              servant.extraAssets.charaGraph &&
-              servant.extraAssets.charaGraph.ascension && (
-                <ServantAscensionTabs
-                  ascensionImages={servant.extraAssets.charaGraph.ascension}
-                />
-              )}
-          </Box>
-          <Box mt={12}>
-            <ServantDetails details={servant} />
-          </Box>
-        </Flex>
-      ))}
-    </Container>
+    <>
+      <NavbarBasic />
+      <Box>
+        <Container maxW="1024px" mb={10} px={0} pt={20}>
+          {servants.map((servant) => (
+            <Flex
+              key={servant.id}
+              direction={flexDirection}
+              justify="center"
+              gap={3}
+              border="1px"
+              borderColor="gray.200"
+              pb={10}
+            >
+              <Box maxW={flexDirection === "column" ? "100%" : "420px"}>
+                {servant.extraAssets &&
+                  servant.extraAssets.charaGraph &&
+                  servant.extraAssets.charaGraph.ascension && (
+                    <AscensionTabs
+                      ascensionImages={servant.extraAssets.charaGraph.ascension}
+                    />
+                  )}
+              </Box>
+              <Box mt={3} px={4}>
+                <Details details={servant} />
+              </Box>
+            </Flex>
+          ))}
+        </Container>
+      </Box>
+    </>
   );
 };
 

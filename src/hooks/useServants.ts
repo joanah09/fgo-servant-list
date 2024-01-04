@@ -10,9 +10,17 @@ export interface ServantData {
   collectionNo: number;
 }
 
-export interface Trait {
+interface Trait {
   id: number;
   name: string;
+}
+
+interface Skill {
+  id: number;
+  name: string;
+  icon: string;
+  detail: string;
+  num: number
 }
 
 export interface ServantDataDetailed extends ServantData {
@@ -30,7 +38,11 @@ export interface ServantDataDetailed extends ServantData {
   atkMax: string;
   hpBase: string;
   hpMax: string;
+  skills: Skill[];
   extraAssets: {
+    faces: {
+      ascension: string[]
+    },
     charaGraph: {
       ascension: {
         [key: string]: string; 
@@ -48,21 +60,24 @@ export const useServants = async (
 ): Promise<ServantData[] | ServantDataDetailed[]> => {
   try {
     if (searchName) {
+      // response(searchName) should have a separate hook file 
       const response = await fetch(apiSearchUrl(searchName));
       const searchData = await response.json();
-
       return searchData as ServantData[];
     } else if (servantId) {
-      // Fetch individual servant data using apiBaseUrl and servantId
-      const response = await fetch(`${apiBaseUrl}/${servantId}`);
-      const servantData = await response.json();
-
-      return [servantData] as ServantDataDetailed[];
+      const response = await fetch(`${apiBaseUrl}`);
+      const servantData: ServantData[] = await response.json();
+      // detailedServant should have a separate hook file 
+      const detailedServant = servantData.find(data => data.id === servantId) as ServantDataDetailed;
+      
+      return detailedServant ? [detailedServant] : [];
     } else {
-      // Static data, used for initial display
-      return servantsData as unknown as ServantData[];
+      const response = await fetch(`${apiBaseUrl}`);
+      const apiServantData: ServantData[] = await response.json();
+      return apiServantData as ServantData[];
     }
   } catch (error) {
     throw new Error(`Failed to fetch servants.`);
   }
 };
+

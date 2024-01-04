@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ServantRarity from "../servant/ServantRarity";
 import ServantClass from "../servant/ServantClass";
-import { ServantData } from "../../hooks/useServants";
+import { ServantData } from "../../hooks";
 import { Wrap, WrapItem, useBreakpointValue } from "@chakra-ui/react";
 
 interface FilterProps {

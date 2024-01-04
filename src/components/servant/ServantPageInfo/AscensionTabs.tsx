@@ -8,15 +8,15 @@ import {
   Text,
   Center,
 } from "@chakra-ui/react";
-
 import { useColorMode } from "@chakra-ui/react";
 
-interface AscensionTabsProps {
+const AscensionTabs = ({
+  ascensionImages,
+}: {
   ascensionImages: Record<string, string>;
-}
-
-const ServantAscensionTabs = ({ ascensionImages }: AscensionTabsProps) => {
+}) => {
   const { colorMode } = useColorMode();
+
   return (
     <Tabs
       defaultIndex={0}
@@ -64,4 +64,4 @@ const ServantAscensionTabs = ({ ascensionImages }: AscensionTabsProps) => {
   );
 };
 
-export default ServantAscensionTabs;
+export default AscensionTabs;

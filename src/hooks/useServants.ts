@@ -23,6 +23,13 @@ interface Skill {
   num: number
 }
 
+interface NP {
+  card: string;
+  name: string;
+  rank: string;
+  type: string;
+  detail: string;
+}
 export interface ServantDataDetailed extends ServantData {
   lvMax: number;
   flag: string;
@@ -39,6 +46,20 @@ export interface ServantDataDetailed extends ServantData {
   hpBase: string;
   hpMax: string;
   skills: Skill[];
+  noblePhantasms: NP[];
+  profile: {
+    stats: {
+      agility: string;
+      deity: string;
+      endurance: string;
+      luck: string;
+      magic: string;
+      np: string;
+      personality: string;
+      policy: string;
+      strength: string;
+    };
+  };
   extraAssets: {
     faces: {
       ascension: string[]

@@ -6,6 +6,7 @@ import AttackHP from "./AttackHP";
 import Traits from "./Traits";
 import CommandCards from "./CommandCards";
 import Skills from "./Skills";
+import Stats from "./Stats";
 
 const Details = ({ details }: { details: ServantDataDetailed }) => {
   // Stars for rarity
@@ -16,7 +17,7 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
     }
     return stars;
   };
-
+  console.log(details);
   return (
     <>
       <Box>
@@ -30,6 +31,10 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
         <Flex flexWrap="wrap">
           <BasicInfo details={details} />
           <AttackHP details={details} />
+        </Flex>
+
+        <Flex flexWrap="wrap">
+          <Stats details={details} />
         </Flex>
 
         <Flex flexWrap="wrap">

@@ -15,7 +15,9 @@ const Traits = ({ details }: { details: ServantDataDetailed }) => {
           m={1}
           key={trait.id}
         >
-          <TagLabel textTransform="capitalize">{trait.name}</TagLabel>
+          <TagLabel textTransform="capitalize">
+            {trait.name.replace(/(?<!^)([A-Z])/g, " $1")}
+          </TagLabel>
         </Tag>
       ))}
     </Box>

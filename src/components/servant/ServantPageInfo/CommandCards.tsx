@@ -1,5 +1,5 @@
 import { Box, Stack, Text, Image } from "@chakra-ui/react";
-import { ServantDataDetailed } from "../../../hooks/useServants";
+import { ServantDataDetailed } from "../../../hooks";
 import quick from "../../../assets/images/Quick.webp";
 import arts from "../../../assets/images/Arts.webp";
 import buster from "../../../assets/images/Buster.webp";

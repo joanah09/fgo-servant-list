@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { ServantDataDetailed } from "../../../hooks/useServants";
+import { ServantDataDetailed } from "../../../hooks";
 
 const AttackHP = ({ details }: { details: ServantDataDetailed }) => {
   return (

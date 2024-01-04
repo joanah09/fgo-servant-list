@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useServants, ServantDataDetailed } from "../../hooks/useServants";
+import { useServants, ServantDataDetailed } from "../../hooks";
 import {
   Box,
   Container,

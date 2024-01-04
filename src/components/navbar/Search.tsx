@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Input, InputGroup } from "@chakra-ui/react";
-import { useServants, ServantData } from "../../hooks/useServants";
+import { useServants, ServantData } from "../../hooks";
 
 interface SearchProps {
   onSearchResults: (results: ServantData[]) => void;

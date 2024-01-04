@@ -1,5 +1,5 @@
 import { Text, Box, Flex } from "@chakra-ui/react";
-import { ServantDataDetailed } from "../../../hooks/useServants";
+import { ServantDataDetailed } from "../../../hooks";
 import { StarIcon } from "@chakra-ui/icons";
 import BasicInfo from "./BasicInfo";
 import AttackHP from "./AttackHP";

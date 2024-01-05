@@ -7,6 +7,7 @@ import {
   Flex,
   ResponsiveValue,
   useBreakpointValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import AscensionTabs from "./ServantPageInfo/AscensionTabs";
 import Details from "./ServantPageInfo/Details";
@@ -16,6 +17,7 @@ import Costume from "./ServantPageInfo/Costume";
 const ServantPage = () => {
   const { servantId } = useParams();
   const [servants, setServants] = useState<ServantDataDetailed[]>([]);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +52,7 @@ const ServantPage = () => {
               justify="center"
               gap={3}
               border="1px"
-              borderColor="gray.200"
+              borderColor={colorMode === "dark" ? "gray.700" : "gray.200"}
               pb={10}
             >
               <Box maxW={flexDirection === "column" ? "100%" : "420px"}>

@@ -22,9 +22,9 @@ const Costume = ({ costume }: { costume: Record<string, string> }) => {
       colorScheme="red"
       mt={5}
       mx={0}
-      bg={colorMode === "dark" ? "gray.700" : "gray.100"}
+      bg={colorMode === "dark" ? "gray.700" : "gray.200"}
     >
-      <Center h="50px" bg={colorMode === "dark" ? "red.700" : "red.400"}>
+      <Center h="50px" bg={colorMode === "dark" ? "gray.600" : "gray.300"}>
         <Text color={colorMode === "dark" ? "white" : "black"}>Costume</Text>
       </Center>
       <TabList w="100%">

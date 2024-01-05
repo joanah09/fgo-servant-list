@@ -24,9 +24,9 @@ const AscensionTabs = ({
       variant="line"
       colorScheme="red"
       mx={0}
-      bg={colorMode === "dark" ? "gray.700" : "gray.100"}
+      bg={colorMode === "dark" ? "gray.700" : "gray.200"}
     >
-      <Center h="50px" bg={colorMode === "dark" ? "red.700" : "red.400"}>
+      <Center h="50px" bg={colorMode === "dark" ? "gray.600" : "gray.300"}>
         <Text color={colorMode === "dark" ? "white" : "black"}>
           Ascension Stage
         </Text>

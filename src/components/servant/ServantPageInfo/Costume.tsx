@@ -19,9 +19,11 @@ const Costume = ({ costume }: { costume: Record<string, string> }) => {
       defaultIndex={0}
       position="relative"
       variant="line"
-      colorScheme="red"
+      colorScheme="gray"
       mt={5}
       mx={0}
+      maxW="350px"
+      minW="320px"
       bg={colorMode === "dark" ? "gray.700" : "gray.200"}
     >
       <Center h="50px" bg={colorMode === "dark" ? "gray.600" : "gray.300"}>
@@ -40,8 +42,6 @@ const Costume = ({ costume }: { costume: Record<string, string> }) => {
           <TabPanel key={costumeImage[0]} p={0}>
             <Image
               boxSize="100%"
-              maxW="350px"
-              minW="320px"
               fit="cover"
               src={costumeImage.length === 1 ? costume[costumeImage[0]] : ""}
               alt={`Ascension ${costumeImage[0]}`}
@@ -54,8 +54,6 @@ const Costume = ({ costume }: { costume: Record<string, string> }) => {
             <TabPanel key={key} p={0}>
               <Image
                 boxSize="100%"
-                maxW="350px"
-                minW="320px"
                 fit="cover"
                 src={costume[key]}
                 alt={`Ascension ${key}`}

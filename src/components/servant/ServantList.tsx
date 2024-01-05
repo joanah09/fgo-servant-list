@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { ServantData, ServantDataDetailed } from "../../hooks";
 import ServantCard from "./ServantCard";
+import { Box, SkeletonText } from "@chakra-ui/react";
 
 interface ServantListProps {
   servant: ServantData[] | null;
@@ -13,15 +13,12 @@ const ServantList = ({
   onServantClick,
   detailedServantData,
 }: ServantListProps) => {
-  const [loading, setLoading] = useState(false);
-
   const handleServantClick = (id: number) => {
     onServantClick(id);
   };
 
   return (
     <>
-      {/* {loading && <p>Loading Servants...</p>} */}
       {servant && servant.length > 0 ? (
         servant.map((item) => (
           <ServantCard
@@ -32,7 +29,9 @@ const ServantList = ({
           />
         ))
       ) : (
-        <p>Loading Servants...</p>
+        <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
+          <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
+        </Box>
       )}
     </>
   );

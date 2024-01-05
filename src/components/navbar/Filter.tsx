@@ -31,7 +31,6 @@ const Filter = ({ servant, onSort }: FilterProps) => {
     { value: "avenger", label: "Avenger" },
     { value: "foreigner", label: "Foreigner" },
     { value: "pretender", label: "Pretender" },
-    { value: "grandCaster", label: "Grand Caster" },
   ];
 
   const [selectedRarity, setSelectedRarity] = useState("");

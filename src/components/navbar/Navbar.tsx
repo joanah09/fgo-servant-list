@@ -1,4 +1,5 @@
 import { HStack, Image, useColorMode } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import Search from "../navbar/Search";
 import ColorModeSwitch from "../navbar/ColorSwitch";
 import darkLogo from "../../assets/fgo-logo-white.png";
@@ -48,7 +49,10 @@ const Navbar = ({ onSearchResults }: NavbarProps) => {
       boxShadow={scrolled ? "0px 2px 6px rgba(0, 0, 0, 0.1)" : "none"}
       transition="box-shadow 0.1s ease-in-out"
     >
-      <Image src={logoSrc} boxSize="50px" />
+      <Link to={`/`}>
+        <Image src={logoSrc} boxSize="50px" />
+      </Link>
+
       <Search onSearchResults={onSearchResults} />
       <ColorModeSwitch />
     </HStack>

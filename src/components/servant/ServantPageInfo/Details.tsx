@@ -17,7 +17,7 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
     }
     return stars;
   };
-  console.log(details);
+
   return (
     <>
       <Box>
@@ -33,9 +33,7 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
           <AttackHP details={details} />
         </Flex>
 
-        <Flex flexWrap="wrap">
-          <Stats details={details} />
-        </Flex>
+        <Stats details={details} />
 
         <Flex flexWrap="wrap">
           <Traits details={details} />

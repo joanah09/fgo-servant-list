@@ -10,60 +10,54 @@ import {
 } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 
-const AscensionTabs = ({
-  ascensionImages,
-}: {
-  ascensionImages: Record<string, string>;
-}) => {
+const Costume = ({ costume }: { costume: Record<string, string> }) => {
   const { colorMode } = useColorMode();
-  const ascenionKey = Object.keys(ascensionImages);
+  const costumeImage = Object.keys(costume);
+
   return (
     <Tabs
       defaultIndex={0}
       position="relative"
       variant="line"
       colorScheme="red"
+      mt={5}
       mx={0}
       bg={colorMode === "dark" ? "gray.700" : "gray.100"}
     >
       <Center h="50px" bg={colorMode === "dark" ? "red.700" : "red.400"}>
-        <Text color={colorMode === "dark" ? "white" : "black"}>
-          Ascension Stage
-        </Text>
+        <Text color={colorMode === "dark" ? "white" : "black"}>Costume</Text>
       </Center>
       <TabList w="100%">
-        {ascenionKey.length > 1 &&
-          ascenionKey.map((key, index) => (
-            <Tab key={key} py={2} minW={`${100 / ascenionKey.length}%`}>
+        {costumeImage.length > 1 &&
+          costumeImage.map((key, index) => (
+            <Tab key={key} py={2} minW={`${100 / costumeImage.length}%`}>
               {index + 1}
             </Tab>
           ))}
       </TabList>
       <TabPanels mx={0}>
-        {ascenionKey.length <= 1 ? (
-          <TabPanel key={ascenionKey[0]} p={0}>
+        {costumeImage.length <= 1 ? (
+          <TabPanel key={costumeImage[0]} p={0}>
             <Image
               boxSize="100%"
               maxW="350px"
               minW="320px"
               fit="cover"
-              src={
-                ascenionKey.length === 1 ? ascensionImages[ascenionKey[0]] : ""
-              }
-              alt={`Ascension ${ascenionKey[0]}`}
+              src={costumeImage.length === 1 ? costume[costumeImage[0]] : ""}
+              alt={`Ascension ${costumeImage[0]}`}
               p={0}
             />
           </TabPanel>
         ) : (
           // Render TabPanels for multiple images
-          ascenionKey.map((key) => (
+          costumeImage.map((key) => (
             <TabPanel key={key} p={0}>
               <Image
                 boxSize="100%"
                 maxW="350px"
                 minW="320px"
                 fit="cover"
-                src={ascensionImages[key]}
+                src={costume[key]}
                 alt={`Ascension ${key}`}
                 p={0}
               />
@@ -75,4 +69,4 @@ const AscensionTabs = ({
   );
 };
 
-export default AscensionTabs;
+export default Costume;

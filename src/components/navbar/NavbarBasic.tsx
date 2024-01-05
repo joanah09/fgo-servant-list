@@ -45,7 +45,9 @@ const NavbarBasic = () => {
       boxShadow={scrolled ? "0px 2px 6px rgba(0, 0, 0, 0.1)" : "none"}
       transition="box-shadow 0.1s ease-in-out"
     >
-      <Image src={logoSrc} boxSize="50px" />
+      <Link to={`/`}>
+        <Image src={logoSrc} boxSize="50px" />
+      </Link>
 
       <Link to={`/`}>
         <Text as="u">Back to Servant List</Text>

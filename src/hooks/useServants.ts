@@ -84,6 +84,10 @@ export const useServants = async (
       // response(searchName) should have a separate hook file 
       const response = await fetch(apiSearchUrl(searchName));
       const searchData = await response.json();
+
+      if (searchData.length === 0) {
+        throw new Error(`No servants found.`);
+      }
       return searchData as ServantData[];
     } else if (servantId) {
       const response = await fetch(`${apiBaseUrl}`);

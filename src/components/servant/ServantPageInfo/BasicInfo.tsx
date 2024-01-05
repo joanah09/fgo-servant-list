@@ -3,7 +3,7 @@ import { ServantDataDetailed } from "../../../hooks";
 
 const BasicInfo = ({ details }: { details: ServantDataDetailed }) => {
   return (
-    <Box flexBasis={{ base: "100%", md: "50%" }} mb={{ base: 4, md: 0 }}>
+    <Box flexBasis={{ base: "100%", md: "50%" }}>
       <Text>
         <b>ID: </b>
         <Text textTransform="capitalize" as="span">

@@ -11,6 +11,7 @@ import {
 import AscensionTabs from "./ServantPageInfo/AscensionTabs";
 import Details from "./ServantPageInfo/Details";
 import NavbarBasic from "../navbar/NavbarBasic";
+import Costume from "./ServantPageInfo/Costume";
 
 const ServantPage = () => {
   const { servantId } = useParams();
@@ -60,7 +61,14 @@ const ServantPage = () => {
                       ascensionImages={servant.extraAssets.charaGraph.ascension}
                     />
                   )}
+
+                {servant.extraAssets &&
+                  servant.extraAssets.charaGraph &&
+                  servant.extraAssets.charaGraph.costume && (
+                    <Costume costume={servant.extraAssets.charaGraph.costume} />
+                  )}
               </Box>
+
               <Box mt={3} px={4}>
                 <Details details={servant} />
               </Box>

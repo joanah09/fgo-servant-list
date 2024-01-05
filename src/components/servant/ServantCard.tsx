@@ -18,7 +18,9 @@ const ServantCard = ({ servant }: ServantCardProps) => {
     <Link to={`/servant/${servant.id}`}>
       <Card borderRadius={2} overflow="hidden" cursor="pointer">
         <Flex alignItems="center">
-          {displayImage && <Image boxSize="85px" src={displayImage} />}
+          {displayImage && (
+            <Image loading="lazy" boxSize="85px" src={displayImage} />
+          )}
           <Box marginLeft={4}>
             {[...Array(servant.rarity)].map((_, starIndex) => (
               <StarIcon key={starIndex} color="yellow.400" />

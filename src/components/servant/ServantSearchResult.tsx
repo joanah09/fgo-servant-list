@@ -23,7 +23,12 @@ const ServantSearchResult = ({ servant, onServantClick }: ServantCardProps) => {
             onClick={() => handleServantClick(servant.id)}
           >
             <Flex alignItems="center">
-              <Image boxSize="85px" src={servant.face} alt={servant.name} />
+              <Image
+                loading="lazy"
+                boxSize="85px"
+                src={servant.face}
+                alt={servant.name}
+              />
               <Box marginLeft={4}>
                 {[...Array(servant.rarity)].map((_, starIndex) => (
                   <StarIcon key={starIndex} color="yellow.400" />

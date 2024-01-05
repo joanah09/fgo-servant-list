@@ -1,4 +1,4 @@
-import servantsData from '../data/servants';
+import servantsData from '../data';
 import { apiSearchUrl, apiBaseUrl } from '../services/api-client';
 
 export interface ServantData {
@@ -90,16 +90,12 @@ export const useServants = async (
       }
       return searchData as ServantData[];
     } else if (servantId) {
-      const response = await fetch(`${apiBaseUrl}`);
-      const servantData: ServantData[] = await response.json();
+      const servantData = servantsData as ServantData[]
       // detailedServant should have a separate hook file 
       const detailedServant = servantData.find(data => data.id === servantId) as ServantDataDetailed;
-      
       return detailedServant ? [detailedServant] : [];
     } else {
-      const response = await fetch(`${apiBaseUrl}`);
-      const apiServantData: ServantData[] = await response.json();
-      return apiServantData as ServantData[];
+      return servantsData as ServantData[];
     }
   } catch (error) {
     throw new Error(`Failed to fetch servants.`);

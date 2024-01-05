@@ -38,6 +38,8 @@ const NavbarBasic = () => {
       position="fixed"
       w="100%"
       bg={colorMode === "dark" ? "gray.800" : "white"}
+      borderBottom="1px"
+      borderColor={colorMode === "dark" ? "gray.700" : "gray.100"}
       zIndex="sticky"
       justifyContent="space-between"
       py={3}

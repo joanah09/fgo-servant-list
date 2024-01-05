@@ -31,19 +31,24 @@ const ServantPage = () => {
         console.error("Servant data not found:", error);
       }
     };
-
     fetchData();
   }, [servantId]);
 
   const flexDirection = useBreakpointValue({
     base: "column",
-    sm: "row",
+    lg: "row",
   }) as ResponsiveValue<"column" | "row">;
 
+  const flexDirectionImage = useBreakpointValue({
+    base: "column",
+    sm: "column",
+    md: "row",
+    lg: "column",
+  }) as ResponsiveValue<"column" | "row">;
   return (
     <>
       <NavbarBasic />
-      <Box>
+      <Box pt={10}>
         <Container maxW="1024px" mb={10} px={0} pt={20}>
           {servants.map((servant) => (
             <Flex
@@ -51,24 +56,43 @@ const ServantPage = () => {
               direction={flexDirection}
               justify="center"
               gap={3}
-              border="1px"
-              borderColor={colorMode === "dark" ? "gray.700" : "gray.200"}
+              border={{
+                base: "none",
+                lg: "1px",
+              }}
+              borderColor={{
+                base: "transparent",
+                lg: colorMode === "dark" ? "gray.700" : "gray.200",
+              }}
               pb={10}
             >
-              <Box maxW={flexDirection === "column" ? "100%" : "420px"}>
-                {servant.extraAssets &&
-                  servant.extraAssets.charaGraph &&
-                  servant.extraAssets.charaGraph.ascension && (
-                    <AscensionTabs
-                      ascensionImages={servant.extraAssets.charaGraph.ascension}
-                    />
-                  )}
+              <Box
+                maxW={flexDirection === "column" ? "100%" : "420px"}
+                mx="auto"
+              >
+                <Flex
+                  direction={flexDirectionImage}
+                  alignItems="flex-end"
+                  gap={3}
+                >
+                  {servant.extraAssets &&
+                    servant.extraAssets.charaGraph &&
+                    servant.extraAssets.charaGraph.ascension && (
+                      <AscensionTabs
+                        ascensionImages={
+                          servant.extraAssets.charaGraph.ascension
+                        }
+                      />
+                    )}
 
-                {servant.extraAssets &&
-                  servant.extraAssets.charaGraph &&
-                  servant.extraAssets.charaGraph.costume && (
-                    <Costume costume={servant.extraAssets.charaGraph.costume} />
-                  )}
+                  {servant.extraAssets &&
+                    servant.extraAssets.charaGraph &&
+                    servant.extraAssets.charaGraph.costume && (
+                      <Costume
+                        costume={servant.extraAssets.charaGraph.costume}
+                      />
+                    )}
+                </Flex>
               </Box>
 
               <Box mt={3} px={4}>

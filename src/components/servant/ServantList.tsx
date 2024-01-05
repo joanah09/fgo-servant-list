@@ -21,7 +21,7 @@ const ServantList = ({
 
   return (
     <>
-      {loading && <p>Loading Servants...</p>}
+      {/* {loading && <p>Loading Servants...</p>} */}
       {servant && servant.length > 0 ? (
         servant.map((item) => (
           <ServantCard
@@ -32,7 +32,7 @@ const ServantList = ({
           />
         ))
       ) : (
-        <p>No Servants found.</p>
+        <p>Loading Servants...</p>
       )}
     </>
   );

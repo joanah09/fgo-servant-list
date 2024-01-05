@@ -10,35 +10,35 @@ const Stats = ({ details }: { details: ServantDataDetailed }) => {
 
       <Flex flexWrap="wrap">
         <Box flexBasis={{ base: "100%", md: "50%" }}>
-          <Text fontSize="sm">
+          <Text>
             <b>Agility: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.agility}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Diety: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.deity}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Endurance: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.endurance}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Luck: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.luck}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Magic: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.magic}
@@ -47,28 +47,28 @@ const Stats = ({ details }: { details: ServantDataDetailed }) => {
         </Box>
 
         <Box flexBasis={{ base: "100%", md: "50%" }}>
-          <Text fontSize="sm">
+          <Text>
             <b>Noble Phantasm: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.np}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Personality: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.personality}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Policy: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.policy}
             </Text>
           </Text>
 
-          <Text fontSize="sm">
+          <Text>
             <b>Strength: </b>
             <Text textTransform="capitalize" as="span">
               {details.profile.stats.strength}

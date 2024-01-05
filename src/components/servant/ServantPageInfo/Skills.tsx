@@ -46,7 +46,7 @@ const Skills = ({ details }: { details: ServantDataDetailed }) => {
             <Image
               src={cardImages[noblePhantasm.card.toLowerCase()]}
               alt={`${noblePhantasm.card} card`}
-              boxSize={{ base: "50px", md: "100px", sm: "70px" }}
+              boxSize={{ base: "70px", md: "70px", sm: "50px" }}
             />
 
             <Stack alignItems="flex-start" alignSelf="center" gap="1px">

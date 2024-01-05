@@ -81,13 +81,13 @@ export const useServants = async (
 ): Promise<ServantData[] | ServantDataDetailed[]> => {
   try {
     if (searchName) {
+      //this search should be in a different hook 
       const response = await fetch(apiSearchUrl(searchName));
       const searchData = await response.json();
 
       if (searchData.length === 0) {
         throw new Error(`No servants found.`);
       }
-      // Assuming searchData can be both ServantData and ServantDataDetailed
       return searchData as ServantData[] | ServantDataDetailed[];
     } else if (servantId) {
       // const servantData = servantsData as ServantData[];

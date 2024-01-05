@@ -81,24 +81,25 @@ export const useServants = async (
 ): Promise<ServantData[] | ServantDataDetailed[]> => {
   try {
     if (searchName) {
-      // response(searchName) should have a separate hook file 
       const response = await fetch(apiSearchUrl(searchName));
       const searchData = await response.json();
 
       if (searchData.length === 0) {
         throw new Error(`No servants found.`);
       }
-      return searchData as ServantData[];
+      // Assuming searchData can be both ServantData and ServantDataDetailed
+      return searchData as ServantData[] | ServantDataDetailed[];
     } else if (servantId) {
-      const servantData = servantsData as ServantData[]
-      // detailedServant should have a separate hook file 
+      // const servantData = servantsData as ServantData[];
+      const servantData = servantsData as unknown as ServantData[];
+
       const detailedServant = servantData.find(data => data.id === servantId) as ServantDataDetailed;
       return detailedServant ? [detailedServant] : [];
     } else {
-      return servantsData as ServantData[];
+      // return servantsData as ServantData[];
+      return servantsData as unknown as ServantData[];
     }
   } catch (error) {
     throw new Error(`Failed to fetch servants.`);
   }
 };
-

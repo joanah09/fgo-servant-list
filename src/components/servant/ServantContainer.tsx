@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import ServantList from "./ServantList";
 import Filter from "../navbar/Filter";
-import {
-  useServants,
-  ServantData,
-  ServantDataDetailed,
-} from "../../hooks/useServants";
+import { useServants, ServantData, ServantDataDetailed } from "../../hooks";
 import ServantSearchResult from "./ServantSearchResult";
 import Navbar from "../navbar/Navbar";
 

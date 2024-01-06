@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Input, InputGroup } from "@chakra-ui/react";
+import {
+  Input,
+  InputGroup,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 import { useServants, ServantData } from "../../hooks";
 
 interface SearchProps {
@@ -9,9 +18,11 @@ interface SearchProps {
 const Search = ({ onSearchResults }: SearchProps) => {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<ServantData[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
     try {
+      setError(null);
       if (searchValue.trim() === "") {
         setSearchResults([]);
         onSearchResults([]);
@@ -21,7 +32,8 @@ const Search = ({ onSearchResults }: SearchProps) => {
         onSearchResults(results);
       }
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      // console.error("Error fetching search results:", error);
+      setError("No Servant found.");
     }
   };
 
@@ -41,6 +53,14 @@ const Search = ({ onSearchResults }: SearchProps) => {
           }}
         />
       </InputGroup>
+
+      <Modal isOpen={!!error} onClose={() => setError(null)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{error}</ModalHeader>
+          <ModalCloseButton mt={2} />
+        </ModalContent>
+      </Modal>
     </>
   );
 };

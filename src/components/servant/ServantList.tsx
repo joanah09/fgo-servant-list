@@ -29,9 +29,20 @@ const ServantList = ({
           />
         ))
       ) : (
-        <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
-          <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
-        </Box>
+        <>
+          <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
+            <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
+          </Box>
+          <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
+            <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
+          </Box>
+          <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
+            <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
+          </Box>
+          <Box boxShadow="md" height="85px" bg="whiteAlpha.100">
+            <SkeletonText mt={4} px={3} noOfLines={3} skeletonHeight="3" />
+          </Box>
+        </>
       )}
     </>
   );

@@ -32,6 +32,11 @@ const ServantPage = () => {
       }
     };
     fetchData();
+    // forced top when clicked from ServantContainer
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [servantId]);
 
   const flexDirection = useBreakpointValue({

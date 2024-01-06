@@ -87,6 +87,7 @@ export const useServants = async (
 
       if (searchData.length === 0) {
         throw new Error(`No servants found.`);
+        
       }
       return searchData as ServantData[] | ServantDataDetailed[];
     } else if (servantId) {

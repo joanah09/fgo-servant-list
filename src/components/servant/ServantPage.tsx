@@ -50,9 +50,11 @@ const ServantPage = () => {
     md: "row",
     lg: "column",
   }) as ResponsiveValue<"column" | "row">;
+
   return (
     <>
       <NavbarBasic />
+
       <Box pt={10}>
         <Container maxW="1024px" mb={10} px={0} pt={20}>
           {servants.map((servant) => (

@@ -7,6 +7,8 @@ import Traits from "./Traits";
 import CommandCards from "./CommandCards";
 import Skills from "./Skills";
 import Stats from "./Stats";
+import Profile from "./Profile";
+import Coin from "./Coin";
 
 const Details = ({ details }: { details: ServantDataDetailed }) => {
   // Stars for rarity
@@ -27,7 +29,7 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
         <Text>{details.rarity && renderStars(details.rarity)}</Text>
       </Box>
 
-      <Box mt={3}>
+      <Box mt={5}>
         <Flex flexWrap="wrap">
           <BasicInfo details={details} />
           <AttackHP details={details} />
@@ -35,16 +37,24 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
 
         <Stats details={details} />
 
-        <Flex flexWrap="wrap">
+        <Flex flexWrap="wrap" mt={5}>
+          <Coin details={details} />
+        </Flex>
+
+        <Flex flexWrap="wrap" mt={5}>
           <Traits details={details} />
         </Flex>
 
-        <Flex flexWrap="wrap">
+        <Flex flexWrap="wrap" mt={5}>
           <CommandCards details={details} />
         </Flex>
 
-        <Flex flexWrap="wrap" flexDirection="column">
+        <Flex flexWrap="wrap" flexDirection="column" mt={5}>
           <Skills details={details} />
+        </Flex>
+
+        <Flex flexWrap="wrap" flexDirection="column" mt={5}>
+          <Profile details={details} />
         </Flex>
       </Box>
     </>

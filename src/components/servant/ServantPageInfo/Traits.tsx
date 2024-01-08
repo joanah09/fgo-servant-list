@@ -3,7 +3,7 @@ import { ServantDataDetailed } from "../../../hooks";
 
 const Traits = ({ details }: { details: ServantDataDetailed }) => {
   return (
-    <Box mt={3}>
+    <Box>
       <Text>
         <b>Traits: </b>
       </Text>

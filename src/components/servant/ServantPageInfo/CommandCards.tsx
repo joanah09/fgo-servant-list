@@ -11,7 +11,7 @@ const CommandCards = ({ details }: { details: ServantDataDetailed }) => {
     buster,
   };
   return (
-    <Box mt={3}>
+    <Box>
       <Text as="b">Command cards:</Text>
       <Stack direction="row">
         {details.cards.map((cardType, index) => (

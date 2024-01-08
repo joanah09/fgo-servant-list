@@ -28,6 +28,13 @@ export interface NP {
   detail: string;
 }
 
+export interface CP {
+  icon: string;
+  card: string;
+  name: string;
+  detail: string;
+}
+
 export interface ServantDataDetailed extends ServantData {
   lvMax: number;
   flag: string;
@@ -45,6 +52,15 @@ export interface ServantDataDetailed extends ServantData {
   hpMax: string;
   skills: Skill[];
   noblePhantasms: NP[];
+  classPassive: CP[];
+  coin: {
+    item: {
+      icon: string;
+      name: string;
+      detail: string;
+    };
+    comments: Record<string, any>[];
+  };
   profile: {
     stats: {
       agility: string;
@@ -57,6 +73,7 @@ export interface ServantDataDetailed extends ServantData {
       policy: string;
       strength: string;
     };
+    comments: Record<string, any>[];
   };
   extraAssets: {
     faces: {

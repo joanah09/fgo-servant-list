@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Image, Flex } from "@chakra-ui/react";
+import { Box, Stack, Text, Image } from "@chakra-ui/react";
 import { ServantDataDetailed } from "../../../hooks";
 import quick from "../../../assets/images/Quick.webp";
 import arts from "../../../assets/images/Arts.webp";
@@ -7,16 +7,16 @@ import buster from "../../../assets/images/Buster.webp";
 const Skills = ({ details }: { details: ServantDataDetailed }) => {
   const sortedSkills = details.skills.map((skill) => skill.num).sort();
   const sortedSkillsInfo = details.skills.slice().sort((a, b) => a.num - b.num);
-
   const cardImages: { [key: string]: string } = {
     quick,
     arts,
     buster,
   };
+
   return (
     <>
-      <Box mt={3}>
-        <Text as="b">Skills:</Text>
+      <Box>
+        <Text as="b">Active Skills:</Text>
 
         {sortedSkills.length > 0 && (
           <Stack direction="column">
@@ -36,6 +36,27 @@ const Skills = ({ details }: { details: ServantDataDetailed }) => {
             ))}
           </Stack>
         )}
+      </Box>
+
+      <Box mt={5}>
+        <Text as="b">Class Skills:</Text>
+
+        {details.classPassive.map((passive, index) => (
+          <Stack direction="row" gap={3} py={2} key={index}>
+            <Image
+              src={passive.icon}
+              alt={`${passive.card} card`}
+              boxSize={{ base: "70px", md: "70px", sm: "50px" }}
+            />
+
+            <Stack alignItems="flex-start" alignSelf="center" gap="1px">
+              <Text as="b" fontSize={{ base: "xs", sm: "sm" }}>
+                {passive.name}
+              </Text>
+              <Text fontSize="xs">{passive.detail}</Text>
+            </Stack>
+          </Stack>
+        ))}
       </Box>
 
       <Box mt={5}>

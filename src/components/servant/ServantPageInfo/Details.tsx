@@ -37,21 +37,27 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
 
         <Stats details={details} />
 
-        <Flex flexWrap="wrap" mt={5}>
-          <Coin details={details} />
-        </Flex>
+        {details.coin !== undefined ? (
+          <Flex flexWrap="wrap" mt={5}>
+            <Coin details={details} />
+          </Flex>
+        ) : null}
 
         <Flex flexWrap="wrap" mt={5}>
           <Traits details={details} />
         </Flex>
 
-        <Flex flexWrap="wrap" mt={5}>
-          <CommandCards details={details} />
-        </Flex>
+        {details.cards.every((card) => card === "weak") ? null : (
+          <Flex flexWrap="wrap" mt={5}>
+            <CommandCards details={details} />
+          </Flex>
+        )}
 
-        <Flex flexWrap="wrap" flexDirection="column" mt={5}>
-          <Skills details={details} />
-        </Flex>
+        {details.skills && details.skills.length > 0 && (
+          <Flex flexWrap="wrap" flexDirection="column" mt={5}>
+            <Skills details={details} />
+          </Flex>
+        )}
 
         <Flex flexWrap="wrap" flexDirection="column" mt={5}>
           <Profile details={details} />

@@ -10,6 +10,7 @@ const CommandCards = ({ details }: { details: ServantDataDetailed }) => {
     arts,
     buster,
   };
+
   return (
     <Box>
       <Text as="b">Command cards:</Text>

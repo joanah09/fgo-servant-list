@@ -2,7 +2,6 @@ import { Text, Box, Flex } from "@chakra-ui/react";
 import { ServantDataDetailed } from "../../../hooks";
 import { StarIcon } from "@chakra-ui/icons";
 import BasicInfo from "./BasicInfo";
-import AttackHP from "./AttackHP";
 import Traits from "./Traits";
 import CommandCards from "./CommandCards";
 import Skills from "./Skills";
@@ -32,7 +31,6 @@ const Details = ({ details }: { details: ServantDataDetailed }) => {
       <Box mt={5}>
         <Flex flexWrap="wrap">
           <BasicInfo details={details} />
-          <AttackHP details={details} />
         </Flex>
 
         <Stats details={details} />

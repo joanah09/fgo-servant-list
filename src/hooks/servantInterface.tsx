@@ -62,6 +62,8 @@ export interface ServantDataDetailed extends ServantData {
     comments: Record<string, any>[];
   };
   profile: {
+    cv: string;
+    illustrator: string;
     stats: {
       agility: string;
       deity: string;

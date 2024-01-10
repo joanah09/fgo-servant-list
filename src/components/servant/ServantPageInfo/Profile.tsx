@@ -15,6 +15,7 @@ const Profile = ({ details }: { details: ServantDataDetailed }) => {
       <Text mb={3}>
         <b>Character Info: </b>
       </Text>
+
       <Accordion defaultIndex={[0]} allowMultiple>
         {details.profile.comments.map((comment, index) => (
           <AccordionItem key={index}>

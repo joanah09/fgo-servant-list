@@ -5,6 +5,7 @@ import Filter from "../navbar/Filter";
 import { useServants, ServantData, ServantDataDetailed } from "../../hooks";
 import ServantSearchResult from "./ServantSearchResult";
 import Navbar from "../navbar/Navbar";
+import { useServantAvatar } from "../../hooks/useServantAvatar";
 
 const ServantContainer = () => {
   const [servants, setServants] = useState<ServantData[] | null>(null);
@@ -28,7 +29,7 @@ const ServantContainer = () => {
   const handleServantClick = async (id: number) => {
     try {
       setServantId(id);
-      const detailedServantData = await useServants(undefined, id);
+      const detailedServantData = await useServants(id);
       setServantDetail(detailedServantData as ServantDataDetailed[]);
     } catch (error) {
       console.error(`Error fetching detailed servant data.`);
@@ -39,14 +40,14 @@ const ServantContainer = () => {
     const fetchData = async () => {
       try {
         if (!servants) {
-          const servantsArray = await useServants();
+          const servantsArray = await useServantAvatar();
           const flattenedServants = servantsArray.flat();
           setServants(flattenedServants);
         }
 
         if (servantDetail === null && servantId !== null) {
           // Fetch detailed servant data if servantId is provided
-          const detailedServantData = await useServants(undefined, servantId);
+          const detailedServantData = await useServants(servantId);
           setServantDetail(detailedServantData as ServantDataDetailed[]);
 
           console.log(servantId, "servant ID");

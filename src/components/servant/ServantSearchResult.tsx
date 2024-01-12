@@ -13,6 +13,8 @@ const ServantSearchResult = ({ servant, onServantClick }: ServantCardProps) => {
   const handleServantClick = (id: number) => {
     onServantClick(id);
   };
+
+  console.log(servant);
   return (
     <>
       {servant.map((servant) => (

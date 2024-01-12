@@ -22,10 +22,7 @@ const ServantPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const detailedServantData = await useServants(
-          undefined,
-          servantId ? parseInt(servantId) : undefined
-        );
+        const detailedServantData = await useServants(servantId);
         setServants(detailedServantData as ServantDataDetailed[]);
       } catch (error) {
         console.error("Servant data not found:", error);

@@ -6,10 +6,9 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useServants, ServantData } from "../../hooks";
+import { ServantData, searchServants } from "../../hooks";
 
 interface SearchProps {
   onSearchResults: (results: ServantData[]) => void;
@@ -27,7 +26,7 @@ const Search = ({ onSearchResults }: SearchProps) => {
         setSearchResults([]);
         onSearchResults([]);
       } else {
-        const results = await useServants(searchValue);
+        const results = await searchServants(searchValue);
         setSearchResults(results);
         onSearchResults(results);
       }

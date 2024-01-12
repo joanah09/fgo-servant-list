@@ -2,25 +2,19 @@ import servantsData from '../data';
 import {
   ServantData,
   ServantDataDetailed,
-  searchServants
 } from './index'; 
 
 export const useServants = async (
-  searchName?: string,
-  servantId?: number
-): Promise<ServantData[] | ServantDataDetailed[]> => {
+  servantId?: number | string
+): Promise<ServantDataDetailed[]> => {
   try {
-    if (searchName) {
-      const searchData = await searchServants(searchName);
-      return searchData as ServantData[] | ServantDataDetailed[];
-    } else if (servantId) {
-      const servantData = servantsData as unknown as ServantData[];
-      const detailedServant = servantData.find(data => data.id === servantId) as ServantDataDetailed;
-      return detailedServant ? [detailedServant] : [];
-    } else {
-      return servantsData as unknown as ServantData[];
+    if (!servantId) {
+      throw new Error(`Servant ID not found.`)
     }
+      const servantData = servantsData as unknown as ServantData[];
+      const detailedServant = servantData.find(data => data.id == servantId) as ServantDataDetailed;
+      return detailedServant ? [detailedServant] : [];
   } catch (error) {
-    throw new Error(`Failed to fetch servants.`);
+    throw error
   }
 };

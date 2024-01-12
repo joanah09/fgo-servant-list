@@ -1,4 +1,5 @@
 import { apiSearchUrl, apiBaseUrl } from "../services/api-client";
+import { ServantData, ServantDataDetailed } from "./servantInterface";
 
 export const searchServants = async (searchName: string) => {
   const response = await fetch(apiSearchUrl(searchName));
@@ -8,5 +9,5 @@ export const searchServants = async (searchName: string) => {
     throw new Error(`No servants found.`);
   }
 
-  return searchData;
+  return searchData as ServantData[];
 };

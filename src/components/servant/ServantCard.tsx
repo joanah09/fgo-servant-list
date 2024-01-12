@@ -10,7 +10,7 @@ interface ServantCardProps {
 }
 
 const ServantCard = ({ servant }: ServantCardProps) => {
-  const extraAssets = (servant as ServantDataDetailed)?.extraAssets;
+  const extraAssets = (servant as ServantDataDetailed).extraAssets;
   const ascensionImages = extraAssets?.faces.ascension || [];
   const displayImage = ascensionImages[1] || ascensionImages[0];
 

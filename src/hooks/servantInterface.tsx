@@ -3,7 +3,7 @@ export interface ServantData {
   name: string;
   className: string;
   rarity: number;
-  face: string;
+  face?: string;
   collectionNo: number;
 }
 

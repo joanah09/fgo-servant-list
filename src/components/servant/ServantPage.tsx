@@ -13,28 +13,33 @@ import AscensionTabs from "./ServantPageInfo/AscensionTabs";
 import Details from "./ServantPageInfo/Details";
 import NavbarBasic from "../navbar/NavbarBasic";
 import Costume from "./ServantPageInfo/Costume";
+import { UseQueryResult } from "@tanstack/react-query";
 
 const ServantPage = () => {
   const { servantId } = useParams();
   const [servants, setServants] = useState<ServantDataDetailed[]>([]);
   const { colorMode } = useColorMode();
 
+  const { data: detailedServantData } = useServants(
+    servantId
+  ) as UseQueryResult<ServantDataDetailed[], Error>;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const detailedServantData = await useServants(servantId);
-        setServants(detailedServantData as ServantDataDetailed[]);
+        setServants(detailedServantData || []);
       } catch (error) {
         console.error("Servant data not found:", error);
       }
     };
     fetchData();
+
     // forced top when clicked from ServantContainer
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, [servantId]);
+  }, [detailedServantData, servantId]);
 
   const flexDirection = useBreakpointValue({
     base: "column",

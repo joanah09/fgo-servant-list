@@ -6,6 +6,7 @@ import { useServants, ServantData, ServantDataDetailed } from "../../hooks";
 import ServantSearchResult from "./ServantSearchResult";
 import Navbar from "../navbar/Navbar";
 import { useServantAvatar } from "../../hooks/useServantAvatar";
+import { UseQueryResult } from "@tanstack/react-query";
 
 const ServantContainer = () => {
   const [servants, setServants] = useState<ServantData[] | null>(null);
@@ -18,6 +19,10 @@ const ServantContainer = () => {
   const [searchResults, setSearchResults] = useState<ServantData[]>([]);
   const [servantId, setServantId] = useState<number | null>(null);
 
+  const { data: detailedServantData } = useServants(
+    servantId === null ? undefined : servantId
+  ) as UseQueryResult<ServantDataDetailed[], Error>;
+
   const handleSort = (filteredData: ServantData[]) => {
     setFilteredServants(filteredData);
   };
@@ -28,9 +33,7 @@ const ServantContainer = () => {
 
   const handleServantClick = async (id: number) => {
     try {
-      setServantId(id);
-      const detailedServantData = await useServants(id);
-      setServantDetail(detailedServantData as ServantDataDetailed[]);
+      setServants(detailedServantData || []);
     } catch (error) {
       console.error(`Error fetching detailed servant data.`);
     }
@@ -47,8 +50,7 @@ const ServantContainer = () => {
 
         if (servantDetail === null && servantId !== null) {
           // Fetch detailed servant data if servantId is provided
-          const detailedServantData = await useServants(servantId);
-          setServantDetail(detailedServantData as ServantDataDetailed[]);
+          setServants(detailedServantData || []);
 
           console.log(servantId, "servant ID");
         }

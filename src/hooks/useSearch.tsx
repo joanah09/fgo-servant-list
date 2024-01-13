@@ -1,5 +1,5 @@
-import { apiSearchUrl, apiBaseUrl } from "../services/api-client";
-import { ServantData, ServantDataDetailed } from "./servantInterface";
+import { apiSearchUrl } from "../services/api-client";
+import { ServantData } from "./servantInterface";
 
 export const searchServants = async (searchName: string) => {
   const response = await fetch(apiSearchUrl(searchName));

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { apiBaseUrl } from '../services/api-client';
+import servantsData from '../data';
 import {
   ServantData,
   ServantDataDetailed,
@@ -10,10 +10,10 @@ export const useServants = (servantId?: number | string) => {
     ['servants', servantId],
     async () => {
       if (!servantId) {
+        // throw new Error(`Servant ID not found.`);
         return [];
       }
-      
-      const servantData = apiBaseUrl as unknown as ServantData[];
+      const servantData = servantsData as ServantData[];
       const detailedServant = servantData.find((data) => data.id == servantId) as ServantDataDetailed;
 
       return detailedServant ? [detailedServant] : [];

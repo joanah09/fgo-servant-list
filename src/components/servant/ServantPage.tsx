@@ -63,9 +63,22 @@ const ServantPage = () => {
       <Box pt={10}>
         <Container maxW="1024px" mb={10} px={0} pt={20}>
           {isLoading ? (
-            <Box textAlign="center" fontSize="xl">
-              <Spinner color="red.500" /> Loading Servant data...
-            </Box>
+            <Flex
+              textAlign="center"
+              fontSize="xl"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Spinner
+                thickness="3px"
+                speed="0.65s"
+                emptyColor="gray.400"
+                color="red.400"
+                size="lg"
+                mr={2}
+              />
+              Loading Servant data...
+            </Flex>
           ) : servantError ? (
             <Box textAlign="center" color="red.500" fontSize="xl">
               Error fetching servant data. Please try again later.

@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ServantContainer from "./components/servant/ServantContainer";
 import ServantPage from "./components/servant/ServantPage";

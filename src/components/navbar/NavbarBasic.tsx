@@ -3,13 +3,14 @@ import ColorModeSwitch from "../navbar/ColorSwitch";
 import darkLogo from "../../assets/fgo-logo-white.png";
 import lightLogo from "../../assets/fgo-logo.png";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavbarBasic = () => {
   const { colorMode } = useColorMode();
   const [scrolled, setScrolled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const logoSrc = colorMode === "dark" ? darkLogo : lightLogo;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,32 @@ const NavbarBasic = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    // Save scroll position
+    const handleBeforeUnload = () => {
+      localStorage.setItem("scrollPosition", String(window.scrollY));
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Restore scroll position
+    const savedScrollPosition = localStorage.getItem("scrollPosition");
+
+    if (savedScrollPosition) {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }
+  }, []);
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   if (!isLoaded) {
     return null;
@@ -47,11 +74,11 @@ const NavbarBasic = () => {
       boxShadow={scrolled ? "0px 2px 6px rgba(0, 0, 0, 0.1)" : "none"}
       transition="box-shadow 0.1s ease-in-out"
     >
-      <Link to={`/`}>
+      <Link to={`/`} onClick={handleBackClick}>
         <Image src={logoSrc} boxSize="50px" />
       </Link>
 
-      <Link to={`/`}>
+      <Link to={`/`} onClick={handleBackClick}>
         <Text as="u">Back to Servant List</Text>
       </Link>
 

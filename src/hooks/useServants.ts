@@ -8,7 +8,7 @@ import {
 
 export const useServants = (servantId?: number | string) => {
   return useQuery<ServantDataDetailed[]>(
-    ['servant', servantId], // Use a dynamic cache key
+    ['servant', servantId],
     async () => {
       if (!servantId) {
         return [];
@@ -17,7 +17,6 @@ export const useServants = (servantId?: number | string) => {
       try {
         const response = await fetch(apiBaseUrl);
         const servantData = await response.json();
-  
         const detailedServant = servantData.find((data: ServantData) => data.id == servantId) as ServantDataDetailed;
   
         return detailedServant ? [detailedServant] : [];

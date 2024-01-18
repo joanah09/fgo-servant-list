@@ -30,9 +30,7 @@ const ServantList = ({
       rootMargin: "0px",
       threshold: 0.1,
     };
-
     const observer = new IntersectionObserver(handleIntersection, options);
-
     if (sentinelRef.current) {
       observer.observe(sentinelRef.current);
     }
@@ -48,7 +46,7 @@ const ServantList = ({
     <>
       {servant && servant.length > 0
         ? servant
-            // .slice(0, initialCard)
+            .slice(0, initialCard)
             .map((item) => (
               <ServantCard
                 key={item.id}

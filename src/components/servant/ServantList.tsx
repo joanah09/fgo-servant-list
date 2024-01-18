@@ -30,7 +30,6 @@ const ServantList = ({
       rootMargin: "0px",
       threshold: 0.1,
     };
-
     const observer = new IntersectionObserver(handleIntersection, options);
 
     if (sentinelRef.current) {
@@ -44,33 +43,11 @@ const ServantList = ({
     };
   }, []);
 
-  // useEffect(() => {
-  //   // Save scroll position
-  //   const handleBeforeUnload = () => {
-  //     localStorage.setItem("scrollPosition", String(window.scrollY));
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   // Restore scroll position
-  //   const savedScrollPosition = localStorage.getItem("scrollPosition");
-
-  //   if (savedScrollPosition) {
-  //     window.scrollTo(0, parseInt(savedScrollPosition, 10));
-  //   }
-  // }, []);
-
   return (
     <>
       {servant && servant.length > 0
         ? servant
-            // .slice(0, initialCard)
+            .slice(0, initialCard)
             .map((item) => (
               <ServantCard
                 key={item.id}

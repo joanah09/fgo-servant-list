@@ -8,10 +8,9 @@ import {
 
 export const useServants = (servantId?: number | string) => {
   return useQuery<ServantDataDetailed[]>(
-    ['servants', servantId],
+    ['servant', servantId], // Use a dynamic cache key
     async () => {
       if (!servantId) {
-        // throw new Error(`Servant ID not found.`);
         return [];
       }
 
@@ -27,6 +26,7 @@ export const useServants = (servantId?: number | string) => {
       }
     },
     {
+      enabled: !!servantId, 
       staleTime: 10 * 1000,
       cacheTime: 5 * 60 * 1000,
     }
